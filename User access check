@@ -1,0 +1,60 @@
+//activity 13
+// Inputs
+string username;
+string password;
+uint userId;
+
+// Outputs
+bool userIsAdmin = userId > 65536;
+bool usernameValid = username.Length >= 3;
+bool passwordContainsSpecial = password.Contains('$') || password.Contains('|') || password.Contains('@');
+bool passwordValid = userIsAdmin 
+    ? password.Length >= 20 && passwordContainsSpecial 
+    : password.Length >= 16 && passwordContainsSpecial;
+
+
+//activity 14
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Ask for input
+        Console.Write("Enter your username: ");
+        string username = Console.ReadLine();
+
+        Console.Write("Enter your password: ");
+        string password = Console.ReadLine();
+
+        Console.Write("Enter your user ID: ");
+        uint userId = Convert.ToUInt32(Console.ReadLine());
+
+        // Boolean checks
+        bool userIsAdmin = userId > 65536;
+        bool usernameValid = username.Length >= 3;
+        bool passwordContainsSpecial = password.Contains('$') || password.Contains('|') || password.Contains('@');
+        bool passwordValid = userIsAdmin 
+            ? password.Length >= 20 && passwordContainsSpecial 
+            : password.Length >= 16 && passwordContainsSpecial;
+
+        // Output logic
+        if (usernameValid && passwordValid)
+        {
+            Console.WriteLine("Access granted. Welcome!");
+        }
+        else
+        {
+            if (!usernameValid)
+                Console.WriteLine("Username must be at least 3 characters long.");
+
+            if (!passwordValid)
+            {
+                Console.WriteLine("Password requirements not met:");
+                Console.WriteLine("- Must contain at least one of the characters $, |, or @");
+                Console.WriteLine(userIsAdmin 
+                    ? "- Must be at least 20 characters long for admin users." 
+                    : "- Must be at least 16 characters long for non-admin users.");
+            }
+        }
+    }
