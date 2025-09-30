@@ -1,0 +1,41 @@
+namespace rpssl_resolve;                                                                                      
+                                                                                                              
+internal class Program                                                                                        
+{                                                                                                             
+    private static void Main(string[] args)                                                                   
+    {                                                                                                         
+        Console.WriteLine("Hello, World!");                                                                   
+                                                                                                              
+        Console.WriteLine("If p1: saks and p2: papir  =>  ");                                                 
+        // Print Win lose or tie.                                                                             
+        var state = StenSaksPapir.saks;                                                                       
+        resolve(StenSaksPapir.saks, StenSaksPapir.papir);                                                     
+    }                                                                                                         
+                                                                                                              
+    private static void resolve(StenSaksPapir p1, StenSaksPapir p2)                                           
+    {                                                                                                         
+        switch (p2 - p1)                                                                                      
+        {                                                                                                     
+            case 0:                                                                                           
+                Console.WriteLine("tie");                                                                     
+                break;                                                                                        
+                                                                                                              
+            case -4 or -2 or 1 or 3:                                                                          
+                Console.WriteLine("spilleren vinder");                                                        
+                break;                                                                                        
+                                                                                                              
+            case -3 or -1 or 2 or 4:                                                                          
+                Console.WriteLine("Spilleren taber");                                                         
+                break;                                                                                        
+        }                                                                                                     
+    }                                                                                                         
+                                                                                                              
+    internal enum StenSaksPapir                                                                               
+    {                                                                                                         
+        saks,                                                                                                 
+        papir,                                                                                                
+        sten,                                                                                                 
+        lizard,                                                                                               
+        spock                                                                                                 
+    }                                                                                                         
+}                                                                                                             
